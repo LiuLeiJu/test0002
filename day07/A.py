@@ -24,10 +24,6 @@ for i in range(0,12):
         sold_sum = 0
         for y in date[x]:
             sold_sum += y[2]
-        if sold_sum <= date[x][0][1]:
-            pass
-        else:
-            sold_sum = date[x][0][1]
         date[x] = [date[x][0][0],date[x][0][1],sold_sum]
     date_month.append(date)
 
