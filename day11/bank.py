@@ -45,14 +45,16 @@ class bank:
         except ValueError:
             print("开户失败")
             return 4
-        if self.__brank_name == "中国工商银行":
+        self.brank(account, name, passwd, address, self.__brank_name, money)
+        '''
+        if self.__brank_name == "icbc":
             self.brank(account, name, passwd, address, self.__brank_name, money)
-        elif self.__brank_name == "中国农业银行":
+        elif self.__brank_name == "abc":
             card = input("请输入卡的种类(1:金卡,0:普通卡)")
             self.brank(account, name, passwd, address, self.__brank_name, money, card)
-
+         '''
     def brank(self,account, name, passwd, address, brank_name, money, card=0):
-        if brank_name not in self.__brank_names:
+        if brank_name  in self.__brank_names:
             self.__brank_names.append(brank_name)
             self.__branks[brank_name] = [
                 {"账号": account, "姓名": name, "密码": passwd, "存款": money, "用户居住地址": address, "开户行": brank_name,
@@ -195,7 +197,7 @@ class bank:
     # 添加
     def insert_user(self, account, name, passwd, money, address, brank_name, card,bank="icbc"):
         money = float(money)
-        sql = "INSERT INTO %s VALUES(%s,%s,%s,%s,%s,%s,%s)"%(bank,account, name, passwd, money, address, brank_name, card)
+        sql = "INSERT INTO %s VALUES(%s,'%s','%s','%s','%s','%s','%s')"%(bank,account,name, passwd, money, address, brank_name, card)
         param = []
         update(sql, param)
 
